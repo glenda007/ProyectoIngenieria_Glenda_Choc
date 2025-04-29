@@ -3,13 +3,6 @@ import random
 opciones = ["piedra", "papel", "tijera"]
 
 def comparar(jugada1, jugada2):
-    """
-    Compara dos jugadas de Piedra, Papel o Tijeras.
-    Retorna:
-        1 si jugada1 gana a jugada2,
-        -1 si jugada2 gana a jugada1,
-        0 si hay empate.
-    """
     if jugada1 == jugada2:
         return 0
     elif (jugada1 == "piedra" and jugada2 == "tijera") or \
@@ -23,7 +16,7 @@ def main():
     puntaje_humano = 0
     puntaje_programa = 0
 
-    print("Bienvenido al juego Piedra, Papel o Tijera.")
+    print("PIEDRA, PAPEL Y TIJERA") 
     print("Se jugarán 3 partidas. Escribe 'piedra', 'papel' o 'tijera' en cada una.\n")
 
     for ronda in range(1, 4):
@@ -32,7 +25,7 @@ def main():
             if jugada_humano in opciones:
                 break
             else:
-                print("Entrada inválida. Solo se permite: piedra, papel o tijera.")
+                print("Error: Entrada inválida. Solo se permite: piedra, papel o tijera.")
 
         jugada_programa = random.choice(opciones)
         print(f"Partida {ronda} - El programa juega: {jugada_programa}")
@@ -49,8 +42,8 @@ def main():
 
         print(f"Puntaje hasta ahora -> Humano: {puntaje_humano}, Programa: {puntaje_programa}\n")
 
-    print("======= RESULTADO FINALES =======")
-    print(f"Punteo final: Humano {puntaje_humano} – Programa {puntaje_programa}")
+    print("***** RESULTADO FINAL *****")
+    print(f"Punteo final: Humano {puntaje_humano} - Programa {puntaje_programa}")
     if puntaje_humano > puntaje_programa:
         print("Ganador final: Humano")
     elif puntaje_programa > puntaje_humano:
