@@ -13,43 +13,38 @@ def comparar(jugada1, jugada2):
         return -1
 
 def main():
+    entrada = input("Ingresa tus 3 jugadas separadas por espacio (piedra papel tijera): ").strip().lower()
+    jugada_humano = entrada.split()
+
+    if len(jugada_humano) != 3:
+        print("Error: Debes ingresar exactamente 3 jugadas.")
+        return
+
+    if not all(j in opciones for j in jugada_humano):
+        print("Error: Las jugadas deben ser 'piedra', 'papel' o 'tijera'.")
+        return
+
+    jugada_programa = [random.choice(opciones) for _ in range(3)]
+    print("El programa elige:", " ".join(jugada_programa))
+
     puntaje_humano = 0
     puntaje_programa = 0
 
-    print("PIEDRA, PAPEL Y TIJERA") 
-    print("Se jugarán 3 partidas. Escribe 'piedra', 'papel' o 'tijera' en cada una.\n")
-
-    for ronda in range(1, 4):
-        while True:
-            jugada_humano = input(f"Partida {ronda} - Tu jugada: ").strip().lower()
-            if jugada_humano in opciones:
-                break
-            else:
-                print("Error: Entrada inválida. Solo se permite: piedra, papel o tijera.")
-
-        jugada_programa = random.choice(opciones)
-        print(f"Partida {ronda} - El programa juega: {jugada_programa}")
-
-        resultado = comparar(jugada_humano, jugada_programa)
+    for jugadas, programa in zip(jugada_humano, jugada_programa):
+        resultado = comparar(jugadas, programa)
         if resultado == 1:
             puntaje_humano += 1
-            print("Resultado: Gana el Humano")
         elif resultado == -1:
             puntaje_programa += 1
-            print("Resultado: Gana el Programa")
-        else:
-            print("Resultado: Empate")
 
-        print(f"Puntaje hasta ahora -> Humano: {puntaje_humano}, Programa: {puntaje_programa}\n")
+    print(f"Punteo: {puntaje_humano} – {puntaje_programa}")
 
-    print("***** RESULTADO FINAL *****")
-    print(f"Punteo final: Humano {puntaje_humano} - Programa {puntaje_programa}")
     if puntaje_humano > puntaje_programa:
-        print("Ganador final: Humano")
+        print("Ganador: Humano")
     elif puntaje_programa > puntaje_humano:
-        print("Ganador final: Programa")
+        print("Ganador: Programa")
     else:
-        print("Resultado final: Empate")
+        print("Resultado: Empate")
 
 if __name__ == "__main__":
     main()
