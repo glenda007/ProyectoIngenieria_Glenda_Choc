@@ -4,7 +4,6 @@ import sys
 OPCIONES = ["piedra", "papel", "tijera"]
 
 def comparar(jugada1, jugada2):
-    """Compara dos jugadas y devuelve el resultado."""
     if jugada1 == jugada2:
         return 0
     elif (jugada1 == "piedra" and jugada2 == "tijera") or \
